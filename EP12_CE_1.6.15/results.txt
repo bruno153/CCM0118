@@ -1,0 +1,37 @@
+Para gerar a rede, utilizei o programa GeneratorHub.java, iserindo os parâmetros:
+(100 páginas,  10000 links, 3 HUBs). Esse programa coloca valores automáticos para Hubs e
+Autoridades, em que nesse caso, as páginas dos Hubs são: 100, 101 e 102; e 103, 104 e 105
+são as Authorities.
+Para evitar erro com o programa transition.java, foi adotado um número de links 10 vezes
+maior do que o número de páginas. E também, cada hub envia um link aleatório e um authority
+recebe um link aleatório. Caso contrário, transistion.java resulta em error de NaN.
+
+Procedimento:
+-Compilar e executar GeneratorHub.java
+-Digitar no terminal (não no args) 100 1000 3
+-Compilar e executar (com o output de GeneratorHub como input) transition.java
+-Compilar e executar (com o output de transition como input) Markov.java
+-Compilar e executar (com o ouput de Markov como input) rankFinder.java com os argumentos
+106 e número da página a verificar.
+
+Nota: é possível executar piping, mas é recomendável direcionar o ouput de Markov em um
+txt, para executar rankFinder múltiplas vezes.
+
+Resultados:
+Hubs - Ranking
+100      32
+101      41
+102      16
+
+Autoridade - Ranking
+103            104  
+104            106
+105            105
+
+Com os dados apresentados, fica claro que o ranking das autoridades é pior do que a dos hubs.
+Inclusive, os três authorities ficaram com os piores rankings, provavelmente porque há poucos
+sites apontando para esses sites.
+
+output1.txt - output do GeneratorHub
+output2.txt - output do transition
+output3.txt - output do Markov com 40 iterações

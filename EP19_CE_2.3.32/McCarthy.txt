@@ -1,0 +1,103 @@
+Determine the value of mcCarthy(50) without using a 
+Computer, give the number of recursive calls used by
+mcCarthy() to compute this result.
+
+Considere o seguinte esboço, que é uma representação da
+análise que fiz em papel (note que o nome da função foi 
+abreviada para mc() e que o esboço de não segue
+formalmente a sintaxe, representando somente a ideia):
+
+mc(50);
+	return mc(mc(61));
+		return mc(mc(72));
+			return mc(mc(83));
+				return mc(mc(94));
+					return mc(mc(105));
+						return 95; // primeiro caso no qual a função retorna sem recursão
+						
+Considere agora o seguinte esquema contruído a partir do mc(95):
+
+mc(95);
+	return mc(mc(106));
+		mc(106) retorna 96
+mc(96);
+	return mc(mc(107));
+		mc(107) retorna 97
+mc(97);
+	return mc(mc(108));
+		mc(108) retorna 98
+mc(98);
+	return mc(mc(109));
+		mc(109) retorna 99
+mc(99);
+	return mc(mc(110));
+		mc(110) retorna 100
+mc(100);
+	return mc(mc(111));
+		mc(111) retorna 101
+mc(101);
+		return 91;
+
+Resumindo o esquema acima, temos:
+
+mc(95);
+	return mc(96);
+		return mc(97);
+			return mc(98);
+				return mc(99);
+					return mc(100);
+						return mc(101);
+							return 91;
+			
+Em seguida, o programa passa a calcular mc(91) para cada 
+linha de recursão, pois este foi o valor retornado por
+mc(95):
+
+mc(91);
+	return mc(92);
+		return mc(93);
+			return mc(94);
+				return mc(95);
+					return mc(96);
+						return mc(97);
+							return mc(98);
+								return mc(99);
+									return mc(100);
+										return mc(101);
+											return 91;
+											
+Portanto, a função mc(95) retorna 91 depois de 13 chamadas
+recursivas (contando a própria função). Enquanto que a
+função mc(91) retorna 91 depois de 22 chamadas.
+Como o valor 91 é transmitido depois de cada linha de 
+recursão, este é o valor retornado pela função mcCarthy(50).
+Portanto, são feitas 4*22 + 13 + 2 (mc(50) e mc(105) não
+foram contados) chamadas recursivas,totalizando 103 chamadas.
+
+
+Prove that the base case is reached for all positive integers
+n OR give a value of n for which this function goes into a 
+recursive loop.
+
+-Prova de que a função entra no caso base para qualquer n inteiro
+positivo:
+
+É trivial que entramos no caso base para qualquer n > 101, pois
+para esses casos há somente uma chamada, sem sequer entrando em
+recursão.
+
+Basta então provar para números inteiros positivos menores que 101.
+O comportamento recursivo do programa tem a seguinte característica:
+o número recebido (no caso menor que 100), é incrementado
+até que o n de recursão chega em um número entre 90 e 101.
+Quando este valor n é atingido, para qualquer valor entre 90 e 101, 
+a função retornará 91, como indicado pelo esquema de recursão da função mc(91),
+em quequalquer valor de McCarthy(n) para n nessa faixa, retorna 91.
+Esse valor de retorno é passado a cada chamada, de maneira análoga
+ao demonstrado no caso McCarthy(50), executando a função MacCarther(91)
+diversas vezes até de fato retornar 91.
+
+Essa explicação ainda pode ser aplicada para qualquer número inteiro
+negativo, isto é, para qualquer n inteiro nunca se chega em um loop
+recursivo infinito. Portanto, não existe um inteiro n na qual a função
+entra em um loop recursivo, como pedido pelo exercício.

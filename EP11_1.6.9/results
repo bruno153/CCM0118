@@ -1,0 +1,9 @@
+Com tentativa e erro, descobrimos que um link possível é
+47, subindo o rank 4 para 3.
+
+Encontra-se no zip três programas, sendo que rankFinder foi
+programado por mim. Recebe dois parâmetros, número total
+de páginas e o index da página a analisar.
+
+Para testar com o medium (já modificado com o link) basta digitar:
+java Transition < medium.txt | java Markov 40 | java rankFinder 50 23
